@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bappa Saha — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/a81368914c.js" crossorigin="anonymous"></script>
+<style>
+:root{
+  --bg:#0f1724;
+  --card:#0b1220;
+  --muted:#9aa4b2;
+  --accent:#7c5cff;
+  --accent2:#00d4ff;
+  --radius:16px;
+  --maxw:1100px;
+  --mono:'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+*{box-sizing:border-box;}
+body{margin:0;padding:0;font-family:var(--mono);background:linear-gradient(180deg,var(--bg),#07101a 120%);color:#e6eef8;scroll-behavior:smooth;}
+.container{max-width:var(--maxw);margin:auto;padding:20px;}
+
+header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:28px;}
+.brand h1{margin:0;font-weight:700;font-size:20px;}
+.brand p{margin:0;color:var(--muted);font-size:13px;}
+nav a{color:var(--muted);text-decoration:none;margin-left:18px;font-weight:600;font-size:14px;}
+nav a:hover{color:var(--accent);}
+
+.hero{display:flex;flex-wrap:wrap;gap:28px;margin-top:18px;padding:28px;border-radius:20px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));box-shadow:0 6px 30px rgba(2,6,23,0.6);}
+.hero-left{flex:1;}
+.hero h2{font-size:32px;margin:0 0 12px 0;}
+.typing{color:var(--accent);font-weight:700;}
+.bio{color:var(--muted);margin-top:10px;max-width:520px;}
+.hero-right{width:180px;height:180px;border-radius:18px;background:var(--card);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;box-shadow:0 14px 40px rgba(2,6,23,0.6);}
+.avatar{width:100px;height:100px;border-radius:999px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-weight:800;font-size:22px;color:white;}
+.orb{position:absolute;border-radius:999px;filter:blur(30px);opacity:0.12;}
+.orb.a{width:150px;height:150px;right:-40px;top:-30px;background:linear-gradient(90deg,var(--accent),transparent);}
+.orb.b{width:120px;height:120px;left:-40px;bottom:-30px;background:linear-gradient(90deg,var(--accent2),transparent);}
+
+section{margin-top:30px;}
+.card{background:var(--card);border-radius:16px;padding:18px;box-shadow:0 6px 20px rgba(2,6,23,0.6);}
+
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-top:12px;}
+.skill-card{padding:12px;border-radius:12px;text-align:center;color:var(--muted);background:rgba(255,255,255,0.02);transition:transform 0.3s ease, box-shadow 0.4s ease, background 0.3s ease;cursor:pointer;}
+.skill-card:hover{transform:translateY(-6px) scale(1.05);background:linear-gradient(90deg,var(--accent),var(--accent2));color:#fff;box-shadow:0 12px 25px rgba(124,92,255,0.3);}
+.skill-card i{font-size:28px;margin-bottom:6px;display:block;color:var(--accent);}
+
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:14px;}
+.project-card{border-radius:14px;padding:14px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));transition: transform .3s ease, box-shadow .4s ease, opacity .5s ease;opacity:0;transform:translateY(20px);}
+.project-card.visible{opacity:1;transform:translateY(0);}
+.project-card:hover{transform:translateY(-8px) scale(1.02);box-shadow:0 18px 40px rgba(0,0,0,0.6);}
+.project-title{font-size:1.2em;margin-bottom:10px;color:#facc15;}
+.btn{background:var(--accent);color:#fff;padding:8px 14px;border:none;border-radius:8px;font-weight:700;cursor:pointer;transition:0.3s;}
+.btn:hover{background:var(--accent2);}
+.project-details{display:none;margin-top:10px;font-size:0.95em;background:#0f1724;padding:12px;border-radius:8px;}
+.project-details a{color:var(--accent2);text-decoration:none;font-weight:600;margin-top:6px;display:inline-block;}
+.project-details a:hover{text-decoration:underline;}
+
+/* Highlighted Contact Bar */
+.contact-bar {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-top:20px;
+  margin-bottom:20px;
+  background: rgba(124, 92, 255, 0.15); /* subtle purple bg */
+  padding: 12px 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(124, 92, 255, 0.2);
+}
+
+.contact-bar a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.02);
+  transition: transform 0.3s, filter 0.3s, background 0.3s;
+}
+
+.contact-bar a img {
+  width: 40px;
+  height: 40px;
+  transition: transform 0.3s, filter 0.3s;
+}
+
+.contact-bar a:hover {
+  transform: scale(1.2);
+  filter: brightness(1.5) saturate(1.2);
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+}
+
+
+.reveal{opacity:0;transform:translateY(8px);transition:opacity .5s ease, transform .5s ease;}
+.reveal.visible{opacity:1;transform:none;}
+
+#backTop{position:fixed;bottom:40px;right:30px;background:var(--accent2);color:#fff;padding:12px 16px;border-radius:50%;font-size:20px;cursor:pointer;display:none;box-shadow:0 6px 18px rgba(0,0,0,0.5);transition:0.3s;}
+#backTop:hover{transform:scale(1.2);}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="brand">
+    <h1>Bappa Saha</h1>
+    <p>AI | ML | DL | Python | Cybersecurity</p>
+  </div>
+  <nav>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+  </nav>
+</header>
+
+<!-- Hero Section -->
+<section class="hero card">
+  <div class="hero-left">
+    <h2>Hi, I’m <span style="color:var(--accent)">Bappa</span> — <span class="typing" id="typed"></span></h2>
+    <p class="bio">🚀 Passionate about AI, ML, DL, and Cybersecurity, I design intelligent, scalable solutions that bridge research and real-world impact. Skilled in Python, DSA, SQL, and ML/DL frameworks, with strong leadership, communication, and management abilities, I strive to turn innovation into meaningful progress.</p>
+
+    <!-- Download CV -->
+    <a href="resume/Bappa Saha CV.pdf" download class="btn" style="margin-top:10px; text-decoration: none;">Download CV</a>
+
+    <!-- Contact Me Bar -->
+    <div class="contact-bar">
+      <a href="mailto:bappasahacse0@gmail.com">
+        <img src="icons/icons8-gmail-50.png" alt="Gmail">
+      </a>
+      <a href="https://github.com/BappaSahaShuvo" target="_blank">
+        <img src="icons/icons8-github-50.png" alt="GitHub">
+      </a>
+      <a href="https://www.linkedin.com/in/bappa-saha-47b14933a/" target="_blank">
+        <img src="icons/icons8-linkedin-50.png" alt="LinkedIn">
+      </a>
+    </div>
+
+  </div>
+
+<div class="hero-right">
+<img src="image/Bappa_Saha.png" style="height: 100%; width: 100%;">
+</div>
+
+</section>
+
+<!-- Skills Section -->
+<section id="skills" class="reveal card">
+  <h3>Technical Skills & Strengths</h3>
+  <div class="skills-grid" id="skillsGrid"></div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects" class="reveal card">
+  <h3>My GitHub Projects</h3>
+  <div class="projects-grid" id="projectsGrid"></div>
+</section>
+
+</div>
+
+<button id="backTop" title="Back to Top"><i class="fas fa-arrow-up"></i></button>
+
+<script>
+// Typed animation
+const phrases = ['AI Engineer', 'ML Researcher', 'Deep Learning Practitioner', 'Python Developer'];
+let idx=0, ch=0, forward=true;
+const typedEl = document.getElementById('typed');
+function stepTyping(){
+  const current = phrases[idx];
+  if(forward){ ch++; if(ch>current.length){forward=false;setTimeout(stepTyping,900);typedEl.textContent=current;return;} }
+  else { ch--; if(ch===0){forward=true;idx=(idx+1)%phrases.length;setTimeout(stepTyping,300);return;} }
+  typedEl.textContent=current.slice(0,ch);
+  setTimeout(stepTyping, forward?150:70);
+}
+stepTyping();
+
+// Skills
+const skills = [
+  {icon:'<i class="fas fa-laptop-code"></i>', name:'Python'},
+  {icon:'<i class="fas fa-laptop-code"></i>', name:'C'},
+  {icon:'<i class="fas fa-laptop-code"></i>', name:'C++'},
+  {icon:'<i class="fas fa-database"></i>', name:'SQL'},
+  {icon:'<i class="fas fa-robot"></i>', name:'Machine Learning'},
+  {icon:'<i class="fas fa-robot"></i>', name:'Deep Learning'},
+  {icon:'<i class="fas fa-brain"></i>', name:'AI'},
+  {icon:'<i class="fas fa-network-wired"></i>', name:'Computer Networks'},
+  {icon:'<i class="fas fa-microchip"></i>', name:'Computer Hardware'},
+  {icon:'<i class="fas fa-users"></i>', name:'Interpersonal Skills'},
+  {icon:'<i class="fas fa-user-tie"></i>', name:'Leadership'},
+  {icon:'<i class="fas fa-bolt"></i>', name:'Pressure Handling'}
+];
+const skillsGrid = document.getElementById('skillsGrid');
+skills.forEach(s=>{
+  const div = document.createElement('div');
+  div.className='skill-card';
+  div.innerHTML=`${s.icon}<span>${s.name}</span>`;
+  skillsGrid.appendChild(div);
+});
+
+// GitHub projects
+const username = 'BappaSahaShuvo';
+const projectsGrid = document.getElementById('projectsGrid');
+fetch(`https://api.github.com/users/${username}/repos?sort=updated`)
+.then(res=>res.json())
+.then(repos=>{
+  repos.forEach((repo,i)=>{
+    const repoName = repo.name.trim();
+    if(repoName === "Mid-exam" || repoName === "final-project" || repoName === "Final-Exam") return;
+
+    const card = document.createElement('div');
+    card.className='project-card';
+    card.innerHTML=`
+      <div class="project-title">${repo.name}</div>
+      <button class="btn">View Project</button>
+      <div class="project-details">
+        <p>${repo.description || "No description provided."}</p>
+        <a href="${repo.html_url}" target="_blank">🔗 View on GitHub</a>
+      </div>
+    `;
+    const btn = card.querySelector('.btn');
+    const details = card.querySelector('.project-details');
+    btn.addEventListener('click',()=>{
+      const show = details.style.display==='block';
+      details.style.display = show?'none':'block';
+      btn.textContent = show?'View Project':'Hide Project';
+    });
+    projectsGrid.appendChild(card);
+    setTimeout(()=>{card.classList.add('visible');},i*150);
+  });
+}).catch(e=>{
+  projectsGrid.innerHTML='Failed to load projects.';
+  console.error(e);
+});
+
+// Reveal & back-to-top
+const reveals = document.querySelectorAll('.reveal');
+window.addEventListener('scroll',()=>{
+  reveals.forEach(el=>{
+    const top = el.getBoundingClientRect().top;
+    if(top<window.innerHeight-80) el.classList.add('visible');
+  });
+  const backTop = document.getElementById('backTop');
+  backTop.style.display = window.scrollY>300?'block':'none';
+});
+document.getElementById('backTop').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+</script>
+</body>
+</html>
