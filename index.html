@@ -123,20 +123,31 @@ section{margin-top:30px;}
     <p class="bio">🚀 Passionate about AI, ML, DL, and Cybersecurity, I design intelligent, scalable solutions that bridge research and real-world impact. Skilled in Python, DSA, SQL, and ML/DL frameworks, with strong leadership, communication, and management abilities, I strive to turn innovation into meaningful progress.</p>
 
     <!-- Download CV -->
-    <a href="resume/Bappa Saha CV.pdf" download class="btn" style="margin-top:10px; text-decoration: none;">Download CV</a>
+    <a href="resume/BappaSaha Resume.pdf" download class="btn" style="margin-top:10px; text-decoration: none;">Download CV</a>
 
     <!-- Contact Me Bar -->
-    <div class="contact-bar">
-      <a href="mailto:bappasahacse0@gmail.com">
+<section id="contact" class="reveal card">
+  <div class="contact-bar" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+    <h3>Contact Me — <span class="typing" id="typedContact"></span></h3>
+    
+    <div class="links" style="display: flex; gap: 30px; align-items: center; justify-content: center; margin-top: 20px;">
+      <!-- Gmail -->
+      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=bappasahacse0@gmail.com" target="_blank">
         <img src="icons/icons8-gmail-50.png" alt="Gmail">
       </a>
+      <!-- GitHub -->
       <a href="https://github.com/BappaSahaShuvo" target="_blank">
         <img src="icons/icons8-github-50.png" alt="GitHub">
       </a>
+      <!-- LinkedIn -->
       <a href="https://www.linkedin.com/in/bappa-saha-47b14933a/" target="_blank">
         <img src="icons/icons8-linkedin-50.png" alt="LinkedIn">
       </a>
     </div>
+  </div>
+</section>
+
+
 
   </div>
 
@@ -175,6 +186,37 @@ function stepTyping(){
   setTimeout(stepTyping, forward?150:70);
 }
 stepTyping();
+
+// Contact me typed animation
+// Contact Me Typed animation
+const contactPhrases = ['Let’s Connect', 'Email Me', 'Check My GitHub', 'Find Me on LinkedIn'];
+let cIdx = 0, cCh = 0, cForward = true;
+const typedContactEl = document.getElementById('typedContact');
+
+function stepTypingContact() {
+  const current = contactPhrases[cIdx];
+  if (cForward) {
+    cCh++;
+    if (cCh > current.length) {
+      cForward = false;
+      setTimeout(stepTypingContact, 900);
+      typedContactEl.textContent = current;
+      return;
+    }
+  } else {
+    cCh--;
+    if (cCh === 0) {
+      cForward = true;
+      cIdx = (cIdx + 1) % contactPhrases.length;
+      setTimeout(stepTypingContact, 300);
+      return;
+    }
+  }
+  typedContactEl.textContent = current.slice(0, cCh);
+  setTimeout(stepTypingContact, cForward ? 150 : 70);
+}
+stepTypingContact();
+
 
 // Skills
 const skills = [
